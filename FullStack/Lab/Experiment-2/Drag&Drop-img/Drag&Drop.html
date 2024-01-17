@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drag and Drop Example</title>
+  <style>
+    #div1 {
+      width: 500px;
+      height: 600px;
+      padding: 10px; /* Added missing space */
+      border: 1px solid #aaaaaa;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    ev.dataTransfer.setData("text/html", ev.target.id);
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text/html");
+    ev.target.appendChild(document.getElementById(data));
+  }
+</script>
+
+<p>Drag the image into the rectangle:</p> <!-- Added closing tag for the <p> element -->
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="/Users/maxx/Downloads/sample.jpeg" width="259" height="194" alt="image" draggable="true" ondragstart="drag(event)"/>
+
+</body>
+</html>
